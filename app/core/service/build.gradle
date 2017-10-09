@@ -1,0 +1,9 @@
+dependencies {
+	compile project(":$rootProject.name-core-data")
+	compile "org.springframework.boot:spring-boot-starter-mail"
+//	compile "org.springframework.boot:spring-boot-starter-batch"
+	//compile "org.apache.storm:storm-core:1.0.3"
+	//compile "org.springframework.boot:spring-boot-starter-websocket"
+	
+	//compile "org.springframework.data:spring-data-hadoop-boot:2.4.0.RELEASE"
+}

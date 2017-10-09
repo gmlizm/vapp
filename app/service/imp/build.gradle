@@ -1,0 +1,10 @@
+dependencies {
+	compile project(":$rootProject.name-service-api")
+	compile project(":$rootProject.name-service-ref")
+	compile "org.springframework.cloud:spring-cloud-starter-security"
+	compile "org.springframework.cloud:spring-cloud-starter-oauth2"
+	compile files("$rootDir/third-libs/taobao-sdk-java-23620627.jar")
+	//dependency jars
+	//compile 'groupId:artifactId:version'
+	
+}
