@@ -8,13 +8,13 @@ buildscript {
     mavenCentral()
   }
   dependencies {
-    classpath "org.springframework.boot:spring-boot-gradle-plugin:1.5.7.RELEASE"
+    classpath "org.springframework.boot:spring-boot-gradle-plugin:2.0.0.RELEASE"
   }
 }
 
 allprojects{
   group='com.aboo'
-	version = '1.0.0'
+  version = '1.0.0'
 }
 
 subprojects {
@@ -40,22 +40,28 @@ subprojects {
   }
 
   apply from: "${scriptDir}/java.gradle"
+  //apply from: "${scriptDir}/kotlin.gradle"
+  apply from: "${scriptDir}/springBootDependency.gradle"
   apply from: "${scriptDir}/osgi.gradle"
-  apply from: "${scriptDir}/springBoot.gradle"
   //apply from: "${scriptDir}/checkstyle.gradle"
   //apply from: "${scriptDir}/findbugs.gradle"
   //apply from: "${scriptDir}/pmd.gradle"
   apply from: "${scriptDir}/eclipse.gradle"
 
-  //dependency management
+  // dependency management
   dependencyManagement {
       imports {
-        mavenBom "org.springframework.cloud:spring-cloud-dependencies:Dalston.SR3"
+        mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:Finchley.RC1"
       }
-    }
+  }
+  
+  dependencies {
+    compile "org.projectlombok:lombok:1.16.20"
+  }
 }
 
 /* gradle wrapper */
 task wrapper(type: Wrapper) {
-  gradleVersion = '4.2'
+  gradleVersion = '4.7'
 }
