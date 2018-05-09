@@ -8,16 +8,22 @@ dependencies {
 	testCompile "org.springframework.boot:spring-boot-devtools"
 }
 
+
+
+
 apply from: "${scriptDir}/springBoot.gradle"
 bootJar {
-    mainClassName = 'com.aboo.vnet.Application'
+    mainClassName = 'com.aboo.vapp.Application'
 }
 
 assemble {
     dependsOn 'copyApp'
     task copyApp(type: Copy) {
             dependsOn 'jar'
-            from libsDir
-            into "${rootDir}/z-dist"
+            from(libsDir){
+              include "${project.name}-${version}.jar"
+            }
+            into "${rootDir}/zpkg"
+            rename{String fileName -> fileName.replace("$project.name","$rootProject.name")}
     }
 }
